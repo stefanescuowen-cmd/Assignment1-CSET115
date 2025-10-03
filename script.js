@@ -39,7 +39,7 @@ function clearEntry(){
 function allClear(){
     current = '0';
     previous = null;
-    opperator = null;
+    operator = null;
     justCalculated = false;
     updateDisplay();
 }
@@ -81,7 +81,7 @@ function square(){
 
 
 function sqrt(){
-    current = Numebr(current) < 0 ? 'Error' : String(Marth.sqrt(Number(current)));
+    current = Number(current) < 0 ? 'Error' : String(Marth.sqrt(Number(current)));
     justCalculated = true;
     updateDisplay();
 }
@@ -94,7 +94,7 @@ function handleOpperator(op){
     else{
         previous = Number(current);
     }
-    opperator = op;
+    operator = op;
     current = '0';
 }
 
@@ -104,9 +104,9 @@ function calculate(){
     let result;
     switch(operator){
         case '+': result = previous + Number(current); break;
-        case '-': result = previous + Number(current); break;
-        case '*': result = previous + Number(current); break;
-        case '/': result = previous + Number(current) === 0 ? 'Error' : previous / Number(current); break;
+        case '-': result = previous - Number(current); break;
+        case '*': result = previous * Number(current); break;
+        case '/': result = Number(current) === 0 ? 'Error' : previous / Number(current); break;
     }
     current = String(result);
     previous = null;
@@ -147,7 +147,7 @@ document.querySelectorAll('.keypad button').forEach(btn =>{
 
 
 document.getElementbyId('mc').addEventListener('click', memoryClear);
-document.getElementbyId('mc').addEventListener('click', memoryRecall);
-document.getElementbyId('mc').addEventListener('click', memoryStore);
-document.getElementbyId('mc').addEventListener('click', memoryPlus);
-document.getElementbyId('mc').addEventListener('click', memoryMinus);
+document.getElementbyId('mr').addEventListener('click', memoryRecall);
+document.getElementbyId('ms').addEventListener('click', memoryStore);
+document.getElementbyId('mplus').addEventListener('click', memoryPlus);
+document.getElementbyId('mminus').addEventListener('click', memoryMinus);
