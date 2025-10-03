@@ -1,0 +1,153 @@
+const display = document.getElementById('display');
+let current ='0';
+let previous = null;
+let opperator=null;
+let justCalculated = false;
+let memory = 0;
+
+
+function updateDisplay(){
+    display.textContent = current;
+}
+
+function inputDigit(digit){
+    if(justCalculated){
+        current = digit;
+        justCalculated = false;
+    }
+    else{
+        current = current ==='0' ? digit : current + digit;
+    }
+    updateDisplay()
+}
+
+
+function inputDecimal(){
+    if (!current.includes('.')){
+        current += '.'
+    }
+    updateDisplay()
+}
+
+
+function clearEntry(){
+    current = '0';
+    updateDisplay();
+}
+
+
+function allClear(){
+    current = '0';
+    previous = null;
+    opperator = null;
+    justCalculated = false;
+    updateDisplay();
+}
+
+
+function backspace(){
+    if (current.length > 1) current = current.slice(0, -1);
+    else current = '0';
+    updateDisplay();
+}
+
+
+function negate(){
+    if (current !== '0'){
+        current = current.charAt(0) === '-' ? current.slice(1) : '-' + current;
+        updateDisplay();
+    }
+}
+
+
+function percent(){
+    current = String(Number(current) / 100);
+    updateDisplay();
+}
+
+
+function reciprocal(){
+    current = Number(current) === 0 ? 'Error' : String(1 / Number(current));
+    justCalculated = true;
+    updateDisplay();
+}
+
+
+function square(){
+    current = String(Number(current) ** 2);
+    justCalculated = true;
+    updateDisplay();
+}
+
+
+function sqrt(){
+    current = Numebr(current) < 0 ? 'Error' : String(Marth.sqrt(Number(current)));
+    justCalculated = true;
+    updateDisplay();
+}
+
+
+function handleOpperator(op){
+    if (operator && previous !== null && !justCalculated){
+        calculate();
+    }
+    else{
+        previous = Number(current);
+    }
+    opperator = op;
+    current = '0';
+}
+
+
+function calculate(){
+    if (!operator || previous === null) return;
+    let result;
+    switch(operator){
+        case '+': result = previous + Number(current); break;
+        case '-': result = previous + Number(current); break;
+        case '*': result = previous + Number(current); break;
+        case '/': result = previous + Number(current) === 0 ? 'Error' : previous / Number(current); break;
+    }
+    current = String(result);
+    previous = null;
+    operator = null;
+    justCalculated = true;
+    updatedDisplay();
+}
+
+
+function memoryClear(){ memory = 0; }
+function memoryRecall(){ current = String(memory); updateDisplay(); }
+function memoryStore(){ memory = Number(current); }
+function memoryPlus(){ memory += Number(current); }
+function memoryMinus(){ memory -= Number(current); }
+
+
+document.querySelectorAll('.keypad button').forEach(btn =>{
+    const action = btn.getAttribute('data-action');
+    const value = btn.getAttribute('data-value');
+
+    btn.addEventListener('click', () => {
+        switch(action){
+            case 'digit' : inputDigit(value); break;
+            case 'decimal' : inputDecimal(); break;
+            case 'ce' : clearEntry(); break;
+            case 'c' : allClear(); break;
+            case 'back' : backspace(); break;
+            case 'negate' : negate(); break;
+            case 'percent' : percent(); break;
+            case 'reciprocal' : reciprocal(); break;
+            case 'square' : square(); break;
+            case 'sqrt' : sqrt(); break;
+            case 'operator' : handleOperator(); break;
+            case 'equals' : calculate(); break;
+        }
+    });
+});
+
+
+document.getElementbyId('mc').addEventListener('click', memoryClear);
+document.getElementbyId('mc').addEventListener('click', memoryRecall);
+document.getElementbyId('mc').addEventListener('click', memoryStore);
+document.getElementbyId('mc').addEventListener('click', memoryPlus);
+document.getElementbyId('mc').addEventListener('click', memoryMinus);
