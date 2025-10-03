@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initialscale=1.0">
         <title>Calculator</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -18,25 +19,47 @@
                     </select>
             </header>
 
-            <article class="display">
-                <div class="expression"></div>
-                <div class="result"></div>
-            </article>
+            <div class="display" id="display"0></div>
 
             <article class="memory-controls">
-                <button>MC</button>
-                <button>MR</button>
-                <button>M+</button>
-                <button>M-</button>
-                <button>MS</button>
+                <button id="mc">MC</button>
+                <button id="mr">MR</button>
+                <button id="mplus">M+</button>
+                <button id="mminus">M-</button>
+                <button id="ms">MS</button>
             </article>
 
             <article class="keypad">
-                <button>C</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>&divide;</button>
+                <button data-action="percent">%</button>
+                <button data-action="ce">CE</button>
+                <button data-action="c">C</button>
+                <button data-action="back">⌫</button><br>
+                
+                <button data-action="reciprocal">1/x</button>
+                <button data-action="square">x²</button>
+                <button data-action="sqrt">²√x</button>
+                <button data-action="operator">÷</button><br>
+
+                <button data-action="digit">7</button>
+                <button data-action="digit">8</button>
+                <button data-action="digit">9</button>
+                <button data-action="operator">×</button><br>
+
+                <button data-action="digit">4</button>
+                <button data-action="digit">5</button>
+                <button data-action="digit">6</button>
+                <button data-action="operator">-</button><br>
+
+                <button data-action="digit">1</button>
+                <button data-action="digit">2</button>
+                <button data-action="digit">3</button>
+                <button data-action="operator">+</button><br>
+
+                <button data-action="negate">+/_</button>
+                <button data-action="digit">0</button>
+                <button data-action="decimal">.</button>
+                <button data-action="equals">=</button>
+                
             </article>
 
             <aside class="history-panel">
