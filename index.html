@@ -4,28 +4,46 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initialscale=1.0">
         <title>Calculator</title>
-        <link type="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
-        <header>
-            <div class="calculator">
-                <h1>Calculator</h1>
-                <select class="mode-toggle">
-                    <option>Standard</option>
-                    <option>Scientific</option>
-                    <option>Programmer</option>
-                </select>
-            </div>
-        </header>
+        <div class="calculator">
+            <header class="calculator-header">
+                    <h1>Calculator</h1>
+                    <select class="mode-toggle">
+                        <option>Standard</option>
+                        <option>Scientific</option>
+                        <option>Programmer</option>
+                    </select>
+            </header>
 
-        <article>
+            <article class="display">
+                <div class="expression"></div>
+                <div class="result"></div>
+            </article>
 
-        </article>
+            <article class="memory-controls">
+                <button>MC</button>
+                <button>MR</button>
+                <button>M+</button>
+                <button>M-</button>
+                <button>MS</button>
+            </article>
 
-        <footer>
-            
-        </footer>
+            <article class="keypad">
+                <button>C</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>&divide;</button>
+            </article>
+
+            <aside class="history-panel">
+
+            </aside>
+
+        </div>
 
         <script src="script.js"></script>
     </body>
