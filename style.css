@@ -25,6 +25,12 @@ body{
     line-height: 2.5rem;
 }
 
+.calculator-container{
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
 .calculator{
     width: 340px;
     background: #e0e0e0;
@@ -80,27 +86,41 @@ body{
     background: #e0e0e0;
 }
 
+.keypad button:active{
+    transform: translateY(2px);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
 .keypad button.operator{
     background: #ffd691;
+}
+
+.keypad button.operator:hover{
+    background: #ffc85c;
 }
 
 .keypad button.equals{
     background: #8fd1ff;
 }
 
+.keypad button.equals:hover{
+    background: #64c1ff;
+}
+
 .history-panel{
-    margin-top: 20px;
-    background: white;
+    width: 200px;
+    background: #f9f9f9;
     border-radius: 6px;
     padding: 10px;
-    max-height: 150px;
+    max-height: 400px;
     overflow-y: auto;
     border: 1px solid #ccc;
 }
 
 .history-panel h2{
-    font-size: 1rem;
-    margin: 0 0 10px 0;
+   margin-top: 0;
+   font-size: 1.1rem;
+   text-align: center;
 }
 
 .history-panel ul{
@@ -110,7 +130,12 @@ body{
 }
 
 .history-panel li{
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9rem;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.2s ease
+}
+
+.history-panel li:hover{
+    background: #e0e0e0;
 }

@@ -9,57 +9,59 @@
     </head>
 
     <body>
-        <div class="calculator">
-            <header class="calculator-header">
-                    <h1>Calculator</h1>
-                    <select class="mode-toggle">
-                        <option>Standard</option>
-                        <option>Scientific</option>
-                        <option>Programmer</option>
-                    </select>
-            </header>
+        <div class="calculator-container">
+            <div class="calculator">
+                <header class="calculator-header">
+                        <h1>Calculator</h1>
+                        <select class="mode-toggle">
+                            <option>Standard</option>
+                            <option>Scientific</option>
+                            <option>Programmer</option>
+                        </select>
+                </header>
 
-            <div class="display" id="display">0</div>
+                <div class="display" id="display">0</div>
 
-            <div class="memory-controls">
-                <button id="mc">MC</button>
-                <button id="mr">MR</button>
-                <button id="mplus">M+</button>
-                <button id="mminus">M-</button>
-                <button id="ms">MS</button>
-            </div>
+                <div class="memory-controls">
+                    <button id="mc">MC</button>
+                    <button id="mr">MR</button>
+                    <button id="mplus">M+</button>
+                    <button id="mminus">M-</button>
+                    <button id="ms">MS</button>
+                </div>
 
-            <div class="keypad">
-                <button data-action="percent">%</button>
-                <button data-action="ce">CE</button>
-                <button data-action="c">C</button>
-                <button data-action="back">⌫</button>
-                
-                <button data-action="reciprocal">1/<em>x</em></button>
-                <button data-action="square"><em>x</em>²</button>
-                <button data-action="sqrt">²√<em>x</em></button>
-                <button class="operator" data-action="operator" data-value="/">÷</button>
+                <div class="keypad">
+                    <button data-action="percent">%</button>
+                    <button data-action="ce">CE</button>
+                    <button data-action="c">C</button>
+                    <button data-action="back">⌫</button>
+                    
+                    <button data-action="reciprocal">1/<em>x</em></button>
+                    <button data-action="square"><em>x</em>²</button>
+                    <button data-action="sqrt">²√<em>x</em></button>
+                    <button class="operator" data-action="operator" data-value="/">÷</button>
 
-                <button data-action="digit" data-value="7">7</button>
-                <button data-action="digit" data-value="8">8</button>
-                <button data-action="digit" data-value="9">9</button>
-                <button class="operator" data-action="operator" data-value="*">×</button>
+                    <button data-action="digit" data-value="7">7</button>
+                    <button data-action="digit" data-value="8">8</button>
+                    <button data-action="digit" data-value="9">9</button>
+                    <button class="operator" data-action="operator" data-value="*">×</button>
 
-                <button data-action="digit" data-value="4">4</button>
-                <button data-action="digit" data-value="5">5</button>
-                <button data-action="digit" data-value="6">6</button>
-                <button class="operator" data-action="operator" data-value="-">-</button>
+                    <button data-action="digit" data-value="4">4</button>
+                    <button data-action="digit" data-value="5">5</button>
+                    <button data-action="digit" data-value="6">6</button>
+                    <button class="operator" data-action="operator" data-value="-">-</button>
 
-                <button data-action="digit" data-value="1">1</button>
-                <button data-action="digit" data-value="2">2</button>
-                <button data-action="digit" data-value="3">3</button>
-                <button  class="operator" data-action="operator" data-value="+">+</button>
+                    <button data-action="digit" data-value="1">1</button>
+                    <button data-action="digit" data-value="2">2</button>
+                    <button data-action="digit" data-value="3">3</button>
+                    <button  class="operator" data-action="operator" data-value="+">+</button>
 
-                <button data-action="negate">+/_</button>
-                <button data-action="digit" data-value="0">0</button>
-                <button data-action="decimal">.</button>
-                <button class="equals" data-action="equals">=</button>
-                
+                    <button data-action="negate">+/_</button>
+                    <button data-action="digit" data-value="0">0</button>
+                    <button data-action="decimal">.</button>
+                    <button class="equals" data-action="equals">=</button>
+                    
+                </div>
             </div>
 
             <aside class="history-panel">
