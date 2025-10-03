@@ -87,3 +87,30 @@ body{
 .keypad button.equals{
     background: #8fd1ff;
 }
+
+.history-panel{
+    margin-top: 20px;
+    background: white;
+    border-radius: 6px;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+.history-panel h2{
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+}
+
+.history-panel ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history-panel li{
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}

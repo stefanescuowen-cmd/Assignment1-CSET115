@@ -108,6 +108,9 @@ function calculate(){
         case '*': result = previous * Number(current); break;
         case '/': result = Number(current) === 0 ? 'Error' : previous / Number(current); break;
     }
+
+    addToHistory(`${previous} ${operator} ${current} = ${result}`)
+
     current = String(result);
     previous = null;
     operator = null;
