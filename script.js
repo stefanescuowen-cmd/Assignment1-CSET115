@@ -28,7 +28,7 @@ function updateFormulaDisplay(){
 
 
 function inputDigit(digit){
-    if(justCalculated){
+    if(current === 'Error' || justCalculated){
         current = digit;
         justCalculated = false;
     }
@@ -40,8 +40,9 @@ function inputDigit(digit){
 
 
 function inputDecimal(){
+    if(current === 'Error') current = '0';
     if (!current.includes('.')){
-        current += '.'
+        current += '.';
     }
     updateDisplay()
 }
@@ -63,6 +64,7 @@ function allClear(){
 
 
 function backspace(){
+    if(current === 'Error') current = '0';
     if (current.length > 1) current = current.slice(0, -1);
     else current = '0';
     updateDisplay();
@@ -70,20 +72,32 @@ function backspace(){
 
 
 function negate(){
+    if(current === 'Error') return;
     if (current !== '0'){
         current = current.charAt(0) === '-' ? current.slice(1) : '-' + current;
-        updateDisplay();
     }
+    else if(previous !== null && operator !== null){
+        current = '-0';
+    }
+        updateDisplay();
+    
 }
 
 
 function percent(){
-    current = String(Number(current) / 100);
+    if(current === 'Error') return;
+    if(previous !== null && operator !== null){
+          current = String((previous * Number(current)) / 100);
+    }
+    else{
+        current = String(Number(current) / 100)
+    }
     updateDisplay();
 }
 
 
 function reciprocal(){
+    if(current === 'Error') return;
     current = Number(current) === 0 ? 'Error' : String(1 / Number(current));
     justCalculated = true;
     updateDisplay();
@@ -91,6 +105,7 @@ function reciprocal(){
 
 
 function square(){
+    if(current === 'Error') return;
     current = String(Number(current) ** 2);
     justCalculated = true;
     updateDisplay();
@@ -98,6 +113,7 @@ function square(){
 
 
 function sqrt(){
+    if(current === 'Error') return;
     current = Number(current) < 0 ? 'Error' : String(Math.sqrt(Number(current)));
     justCalculated = true;
     updateDisplay();
@@ -105,6 +121,9 @@ function sqrt(){
 
 
 function handleOperator(op){
+    if(current === 'Error'){
+        current = '0';
+    }
     if (operator && previous !== null && !justCalculated){
         calculate();
     }
@@ -117,7 +136,7 @@ function handleOperator(op){
 
 
 function calculate(){
-    if (!operator || previous === null) return;
+    if (!operator || previous === null || current === 'Error') return;
     let result;
     switch(operator){
         case '+': result = previous + Number(current); break;
