@@ -13,6 +13,20 @@ body{
     padding: 0;
 }
 
+.formula-display{
+    width: 100%;
+    background: #f0f0f0;
+    border-radius: 6px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    text-align: right;
+    margin-bottom: 5px;
+    color: #666;
+    min-height: 1.5rem;
+    border: 1px solid #ccc;
+
+}
+
 .display{
     width: 100%;
     background: white;

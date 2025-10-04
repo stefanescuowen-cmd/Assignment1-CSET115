@@ -8,7 +8,19 @@ let memory = 0;
 
 function updateDisplay(){
     display.textContent = current;
+    updateFormulaDisplay();
 }
+
+
+function updateFormulaDisplay(){
+    if(previous !==null && operator !== null){
+        formulaDisplay.textContent = `${previous} ${operator} ${current}`;
+    }
+    else{
+        formulaDisplay.textContent = current;
+    }
+}
+
 
 function inputDigit(digit){
     if(justCalculated){
@@ -170,10 +182,10 @@ document.getElementById('clear-history').addEventListener("click", () =>{
 });
 
 
-document.addEventListenr('keydown', (e) => {
+document.addEventListener('keydown', (e) => {
     const key = e.key;
 
-if (!isNan(key)){
+if (!isNaN(key)){
     inputDigit(key);
 }
 
@@ -196,4 +208,6 @@ else if (key === 'Backspace'){
 else if (key === 'Escape'){
     allClear()
 }
+
+updateFormulaDisplay();
 });
