@@ -1,4 +1,9 @@
 const display = document.getElementById('display');
+
+
+const formulaDisplay = document.getElementById('formula-display');
+
+
 let current ='0';
 let previous = null;
 let operator=null;
@@ -207,6 +212,14 @@ else if (key === 'Backspace'){
 
 else if (key === 'Escape'){
     allClear()
+}
+
+else if (key === '%'){
+    percent();
+}
+
+else if (key === '_'){
+    negate();
 }
 
 updateFormulaDisplay();
