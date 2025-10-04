@@ -162,7 +162,38 @@ document.getElementById('mr').addEventListener('click', memoryRecall);
 document.getElementById('ms').addEventListener('click', memoryStore);
 document.getElementById('mplus').addEventListener('click', memoryPlus);
 document.getElementById('mminus').addEventListener('click', memoryMinus);
+
+
 document.getElementById('clear-history').addEventListener("click", () =>{
     const historyList = document.getElementById('history-list');
     historyList.innerHTML = "";
+});
+
+
+document.addEventListenr('keydown', (e) => {
+    const key = e.key;
+
+if (!isNan(key)){
+    inputDigit(key);
+}
+
+else if (key === '.'){
+    inputDecimal();
+}
+
+else if(['+', '-', '*', '/'].includes(key)){
+    handleOperator(key);
+}
+
+else if (key === 'Enter' || key === '='){
+    calculate();
+}
+
+else if (key === 'Backspace'){
+    backspace();
+}
+
+else if (key === 'Escape'){
+    allClear()
+}
 });
