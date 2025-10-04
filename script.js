@@ -119,6 +119,14 @@ function calculate(){
 }
 
 
+function addToHistory(entry){
+    const historyList = document.getElementById('history-list');
+    const li = document.createElement('li');
+    li.textContent = entry;
+    historyList.prepend(li);
+}
+
+
 function memoryClear(){ memory = 0; }
 function memoryRecall(){ current = String(memory); updateDisplay(); }
 function memoryStore(){ memory = Number(current); }
@@ -154,3 +162,7 @@ document.getElementById('mr').addEventListener('click', memoryRecall);
 document.getElementById('ms').addEventListener('click', memoryStore);
 document.getElementById('mplus').addEventListener('click', memoryPlus);
 document.getElementById('mminus').addEventListener('click', memoryMinus);
+document.getElementById('clear-history').addEventListener("click", () =>{
+    const historyList = document.getElementById('history-list');
+    historyList.innerHTML = "";
+});
