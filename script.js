@@ -18,6 +18,7 @@ function updateDisplay(){
 
 
 function updateFormulaDisplay(){
+    if (justCalculated && previous === null && operator === null) return;
     if(previous !==null && operator !== null){
         formulaDisplay.textContent = `${previous} ${operator} ${current}`;
     }
@@ -79,6 +80,7 @@ function negate(){
     else if(previous !== null && operator !== null){
         current = '-0';
     }
+    justCalculated = false;
         updateDisplay();
     
 }
@@ -92,6 +94,7 @@ function percent(){
     else{
         current = String(Number(current) / 100)
     }
+    justCalculated = false;
     updateDisplay();
 }
 
@@ -121,9 +124,7 @@ function sqrt(){
 
 
 function handleOperator(op){
-    if(current === 'Error'){
-        current = '0';
-    }
+    if(current === 'Error') current = '0';
     if (operator && previous !== null && !justCalculated){
         calculate();
     }
@@ -143,6 +144,16 @@ function calculate(){
         case '-': result = previous - Number(current); break;
         case '*': result = previous * Number(current); break;
         case '/': result = Number(current) === 0 ? 'Error' : previous / Number(current); break;
+    }
+
+    if (result === 'Error'){
+        current = result;
+        previous = null;
+        operator = null;
+        justCalculated = true;
+        updateDisplay();
+        return;
+
     }
 
     addToHistory(`${previous} ${operator} ${current} = ${result}`)
