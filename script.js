@@ -1,6 +1,5 @@
 const display = document.getElementById('display');
 
-
 const formulaDisplay = document.getElementById('formula-display');
 
 
@@ -82,7 +81,6 @@ function negate(){
     }
     justCalculated = false;
         updateDisplay();
-    
 }
 
 
@@ -153,7 +151,6 @@ function calculate(){
         justCalculated = true;
         updateDisplay();
         return;
-
     }
 
     addToHistory(`${previous} ${operator} ${current} = ${result}`)
