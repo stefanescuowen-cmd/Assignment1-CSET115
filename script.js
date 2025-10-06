@@ -150,9 +150,11 @@ function calculate(){
         default: return;
     }
 
-   
-    addToHistory(`${previous} ${operator} ${current} = ${result}`);
 }
+    if (result !== 'Error'){
+    addToHistory(`${previous} ${operator} ${current} = ${result}`);
+    }
+    
     current = String(result);
     previous = null;
     operator = null;
