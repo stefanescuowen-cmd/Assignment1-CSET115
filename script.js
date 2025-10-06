@@ -2,7 +2,7 @@ const display = document.getElementById('display');
 
 const formulaDisplay = document.getElementById('formula-display');
 
-
+let currentFunction = null;
 let current ='0';
 let previous = null;
 let operator=null;
@@ -11,25 +11,51 @@ let memory = 0;
 
 
 function updateDisplay(){
-    display.textContent = current;
+    display.textContent = current === '' ? '0' : current;;
     display.style.color = current === 'Error' ? 'red' : 'black';
     updateFormulaDisplay();
 }
 
 
 function updateFormulaDisplay(){
-    if (justCalculated && previous === null && operator === null) return;
-    if(previous !==null && operator !== null){
-        formulaDisplay.textContent = `${previous} ${operator} ${current}`;
+    let displayText = '';
+
+if(currentFunction){
+    switch(currentFunction){
+            case '√' :
+            displayText = `√(${current})`;
+            break;
+
+            case 'sqr' :
+            displayText = `(${current}²)`;
+            break;
+
+            case '1/' :
+            displayText = `1/(${current})`;
+            break;
+
+            case '%' :
+            displayText = `${current}%`;
+            break;
+
+            case '% of' :
+            displayText = `${current}% of ${previous}`;
+            break;
+    }
+}
+
+    else if(previous !== null && operator !== null){
+        displayText = `${previous} ${operator} ${current}`;
     }
     else{
-        formulaDisplay.textContent = current;
+        displayText = current;
     }
+    formulaDisplay.textContent = displayText;
 }
 
 
 function inputDigit(digit){
-    if(current === 'Error' || justCalculated){
+    if(current === 'Error' || justCalculated || current === ''){
         current = digit;
         justCalculated = false;
     }
@@ -90,15 +116,18 @@ function percent(){
     let result;
     if(previous !== null && operator !== null){
         result = (previous * Number(current)) / 100;
+        currentFunction = '% of';
         addToHistory(`${Number(current)}% of ${previous} = ${result}`)
     }
     else{
         result = Number(current) / 100;
+        currentFunction = '%';
         addToHistory(`${current}% = ${result}`)
     }
     current = String(result);
     justCalculated = false;
     updateDisplay();
+    currentFunction = null;
 }
 
 
@@ -109,21 +138,25 @@ function reciprocal(){
     }
     else{
         let result = 1 / Number(current);
+        currentFunction = '1/';
         addToHistory(`1/(${current}) = ${result}`)
         current = String(result);
     }
     justCalculated = true;
     updateDisplay();
+    currentFunction = null;
 }
 
 
 function square(){
     if(current === 'Error') return;
     let result = Number(current) ** 2;
+    currentFunction = 'sqr'
     addToHistory(`${current}² = ${result}`);
     current = String(result);
     justCalculated = true;
     updateDisplay();
+    currentFunction = null;
 }
 
 
@@ -133,12 +166,14 @@ function sqrt(){
         current = 'Error'
     }
     else{
-        let result = Math.sqrt(Number(current))
+        let result = Math.sqrt(Number(current));
+        currentFunction = '√';
         addToHistory(`√(${current}) = ${result}`);
         current = String(result);
     }
     justCalculated = true;
     updateDisplay();
+    currentFunction = null;
 }
 
 
@@ -151,7 +186,7 @@ function handleOperator(op){
         previous = Number(current);
     }
     operator = op;
-    current = '0';
+    current = '';
 }
 
 
@@ -257,7 +292,7 @@ else if (key === 'Enter' || key === '='){
     calculate();
 }
 
-else if (key === 'escape'){
+else if (key === 'Escape'){
     allClear();
 } 
 
@@ -267,10 +302,6 @@ else if(key === 'c'){
 
 else if (key === 'Backspace'){
     backspace();
-}
-
-else if (key === 'Escape'){
-    allClear()
 }
 
 else if (key === '%'){
