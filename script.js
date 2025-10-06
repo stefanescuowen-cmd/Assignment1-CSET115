@@ -12,6 +12,7 @@ let memory = 0;
 
 function updateDisplay(){
     display.textContent = current;
+    display.style.color = current === 'Error' ? 'red' : 'black';
     updateFormulaDisplay();
 }
 
@@ -137,17 +138,20 @@ function handleOperator(op){
 function calculate(){
     if (!operator || previous === null || current === 'Error') return;
     let result;
+    if (operator === '/' && (Number(previous) === 0 || Number(current) === 0)){
+        result = 'Error'
+    } else{
     switch(operator){
         case '+': result = previous + Number(current); break;
         case '-': result = previous - Number(current); break;
         case '*': result = previous * Number(current); break;
-        case '/': result = Number(current) === 0 ? 'Error' : previous / Number(current);
-        break;
-        default:
-            return;
+        case '/': result = previous / Number(current); break;
+        default: return;
     }
-
+    }
+    if (result !== 'Error'){
     addToHistory(`${previous} ${operator} ${current} = ${result}`);
+    }
 
     current = String(result);
     previous = null;
