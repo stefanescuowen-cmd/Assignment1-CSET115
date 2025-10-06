@@ -228,6 +228,10 @@ else if(['+', '-', '*', '/'].includes(key)){
 }
 
 else if (key === 'Enter' || key === '='){
+    if (operator && previous === null){
+        previous = Number(current);
+        current = '0';
+    }
     calculate();
 }
 
