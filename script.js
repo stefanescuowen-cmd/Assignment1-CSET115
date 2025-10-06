@@ -87,12 +87,16 @@ function negate(){
 
 function percent(){
     if(current === 'Error') return;
+    let result;
     if(previous !== null && operator !== null){
-          current = String((previous * Number(current)) / 100);
+        result = (previous * Number(current)) / 100;
+        addToHistory(`${Number(current)}% of ${previous} = ${result}`)
     }
     else{
-        current = String(Number(current) / 100)
+        result = Number(current) / 100;
+        addToHistory(`${current}% = ${result}`)
     }
+    current = String(result);
     justCalculated = false;
     updateDisplay();
 }
@@ -100,7 +104,14 @@ function percent(){
 
 function reciprocal(){
     if(current === 'Error') return;
-    current = Number(current) === 0 ? 'Error' : String(1 / Number(current));
+    if (Number(current) === 0){
+        current = 'Error'
+    }
+    else{
+        let result = 1 / Number(current);
+        addToHistory(`1/(${current}) = ${result}`)
+        current = String(result);
+    }
     justCalculated = true;
     updateDisplay();
 }
@@ -108,7 +119,9 @@ function reciprocal(){
 
 function square(){
     if(current === 'Error') return;
-    current = String(Number(current) ** 2);
+    let result = Number(current) ** 2;
+    addToHistory(`${current}² = ${result}`);
+    current = String(result);
     justCalculated = true;
     updateDisplay();
 }
@@ -116,7 +129,14 @@ function square(){
 
 function sqrt(){
     if(current === 'Error') return;
-    current = Number(current) < 0 ? 'Error' : String(Math.sqrt(Number(current)));
+    if(Number(current) < 0){
+        current = 'Error'
+    }
+    else{
+        let result = Math.sqrt(Number(current))
+        addToHistory(`√(${current}) = ${result}`);
+        current = String(result);
+    }
     justCalculated = true;
     updateDisplay();
 }
@@ -237,6 +257,14 @@ else if (key === 'Enter' || key === '='){
     calculate();
 }
 
+else if (key === 'escape'){
+    allClear();
+} 
+
+else if(key === 'c'){
+    clearEntry();
+}
+
 else if (key === 'Backspace'){
     backspace();
 }
@@ -249,8 +277,20 @@ else if (key === '%'){
     percent();
 }
 
-else if (key === '_'){
+else if (key === '_' || key === '~' || key === 'n'){
     negate();
+}
+
+else if(key === 'r' || key === '^'){
+    reciprocal();
+}
+
+else if(key === 's'){
+    square();
+}
+
+else if(key === 'q'){
+    sqrt();
 }
 
 updateFormulaDisplay();
