@@ -138,6 +138,7 @@ function handleOperator(op){
 function calculate(){
     if (!operator || previous === null || current === 'Error') return;
     let result;
+    
     if (operator === '/' && (Number(previous) === 0 || Number(current) === 0)){
         result = 'Error'
     } else{
@@ -148,11 +149,10 @@ function calculate(){
         case '/': result = previous / Number(current); break;
         default: return;
     }
-    }
-    if (result !== 'Error'){
-    addToHistory(`${previous} ${operator} ${current} = ${result}`);
-    }
 
+   
+    addToHistory(`${previous} ${operator} ${current} = ${result}`);
+}
     current = String(result);
     previous = null;
     operator = null;
